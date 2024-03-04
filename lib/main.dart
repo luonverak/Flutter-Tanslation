@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:translation/home_screen.dart';
 import 'package:translation/translation.dart';
 
+import 'login_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -17,7 +19,7 @@ class MyApp extends StatelessWidget {
       translations: MyTranslations(),
       locale: const Locale('en', 'US'),
       debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
+      home: LoginScreen(),
     );
   }
 }

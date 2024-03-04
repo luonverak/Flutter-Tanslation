@@ -4,18 +4,16 @@ class MyTranslations extends Translations {
   @override
   Map<String, Map<String, String>> get keys => {
         'en_US': {
-          'title': 'Hello World from US',
-          'body': 'I love you',
-        },
-        'pt': {
-          'title': 'Olá de Portugal',
-        },
-        'pt_BR': {
-          'title': 'Olá do Brasil',
+          'label': 'Usernmae',
+          'hintText': 'Input username',
+          'passwordLabel': 'Password',
+          'passworHintText': 'Input password'
         },
         'kh_KHR': {
-          'title': 'សួស្ដី',
-          'body': 'បងស្រលាញ់អូន',
+          'label': 'ឈ្មោះ',
+          'bodhintTexty': 'បំពេញឈ្មោះ',
+          'passwordLabel': 'ពាក្យសម្ងាត់',
+          'passworHintText': 'បំពេញពាក្យសម្ងាត់'
         },
       };
 }
