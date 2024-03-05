@@ -1,4 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:translation/auth/controller/db_controller.dart';
+import 'package:translation/auth/model/db_model.dart';
 import '../widget/input_field.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -9,6 +14,7 @@ class RegisterScreen extends StatelessWidget {
   final databsaeNameController = TextEditingController();
   final usernameController = TextEditingController();
   final psaswprdController = TextEditingController();
+  final dbController = Get.put(DBController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +32,7 @@ class RegisterScreen extends StatelessWidget {
                   'Please enter info of Server to Register',
                   style: TextStyle(fontSize: 16),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
                 InputFieldWidget(
                   controller: ipController,
                   hintText: 'Enter IP Address',
@@ -80,15 +86,30 @@ class RegisterScreen extends StatelessWidget {
                     ),
                     const SizedBox(width: 10),
                     Expanded(
-                      child: Container(
-                        height: 60,
-                        decoration: BoxDecoration(
-                          color: Colors.blue[800],
-                        ),
-                        alignment: Alignment.center,
-                        child: const Text(
-                          'Save Connection',
-                          style: TextStyle(fontSize: 18, color: Colors.white),
+                      child: GestureDetector(
+                        onTap: () async {
+                          await dbController.insertData(
+                            DatabaseModel(
+                              id: Random().nextInt(1000000),
+                              ipAdress: ipController.text,
+                              port: portController.text,
+                              instand: instandController.text,
+                              dbName: databsaeNameController.text,
+                              username: usernameController.text,
+                              psasword: psaswprdController.text.trim(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          height: 60,
+                          decoration: BoxDecoration(
+                            color: Colors.blue[800],
+                          ),
+                          alignment: Alignment.center,
+                          child: const Text(
+                            'Save Connection',
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ),
                         ),
                       ),
                     )

@@ -12,10 +12,13 @@ class DBController extends GetxController {
     await db!.insert(service.table, model.fromJson());
   }
 
-  Future checkLicence() async {
-    Database? database = await service.initializeData();
 
-    if (database != null) {
+  Future checkLicence() async {
+    final db = await service.initializeData();
+    List<Map<String, dynamic>> result =
+        await db!.rawQuery('SELECT COUNT(*) FROM ${service.table}');
+    await db.close();
+    if (result[0]['COUNT(*)'] < 1) {
       Get.offAll(LicenceScreen());
       print('ok');
     } else {

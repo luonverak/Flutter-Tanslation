@@ -7,6 +7,15 @@ class DatabaseModel {
   final String username;
   final String psasword;
 
+  DatabaseModel(
+      {required this.id,
+      required this.ipAdress,
+      required this.port,
+      required this.instand,
+      required this.dbName,
+      required this.username,
+      required this.psasword});
+
   // insert & edit data
   Map<String, dynamic> fromJson() {
     return ({
